@@ -1,1 +1,1 @@
-# yapi_socketio_mock
+# yapi-socketio-mock

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        const socket = io("http://localhost:3001", {
+            query: {
+                mockUrl: "http://192.168.39.191:3000/mock/23/"
+            },
+            transports: ['websocket']
+        });
+        function send() {
+            let eventName = document.getElementById("eventName").value;
+            let content = document.getElementById("content").value;
+            socket.emit(eventName, content)
+        }
+
+        socket.on("/order/empty", res => {
+            console.log(res);
+        })
+    </script>
+</head>
+<body>
+    <input type="text" placeholder="socket事件" id="eventName">
+    <input type="text" placeholder="socket消息内容" id="content">
+    <button onclick="send()">send</button>
+</body>
+</html>
