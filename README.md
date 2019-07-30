@@ -32,7 +32,7 @@ node ./index.js
 git clone https://github.com/GoldSubmarine/yapi-socketio-mock.git
 cd yapi-socketio-mock
 docker build -t yapi-socketio-mock .
-docker run --rm -d -p 3001:3001 --name ysm yapi-socketio-mock
+docker run --rm -d --network host --name ysm yapi-socketio-mock
 ```
 
 ## 测试
