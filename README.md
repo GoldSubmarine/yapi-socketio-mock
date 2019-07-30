@@ -14,9 +14,8 @@
 安装：
 
 ```bash
-wget https://github.com/GoldSubmarine/yapi-socketio-mock/archive/master.zip
-unzip master.zip
-cd yapi-socketio-mock-master
+git clone https://github.com/GoldSubmarine/yapi-socketio-mock.git
+cd yapi-socketio-mock
 yarn install
 node ./index.js
 ```
@@ -30,18 +29,33 @@ node ./index.js
 安装：
 
 ```bash
-wget https://raw.githubusercontent.com/GoldSubmarine/yapi-socketio-mock/master/Dockerfile;
+git clone https://github.com/GoldSubmarine/yapi-socketio-mock.git
+cd yapi-socketio-mock
 docker build -t yapi-socketio-mock .
-docker run --rm -d -p 3001:3001 yapi-socketio-mock
+docker run --rm -d -p 3001:3001 --name ysm yapi-socketio-mock
+```
+
+## 测试
+
+服务启动后访问 `http://yourip:3001/`，从页面中连接 yapi，测试一个接口，如能成功，则部署成功。
+
+## 防火墙
+
+如果遇到服务无法访问，`http://yourip:3001/`页面打不开，尝试从防火墙开启端口
+
+```bash
+# centos 7
+firewall-cmd --zone=public --add-port=3001/tcp --permanent
+systemctl restart firewalld
 ```
 
 ## 使用
 
 ```js
 const socket = io("http://localhost:3001", {
-    query: {
-        mockUrl: "http://192.168.1.1:3000/mock/23/"
-    }
+  query: {
+    mockUrl: "http://192.168.1.1:3000/mock/23/"
+  }
 });
 ```
 

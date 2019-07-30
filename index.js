@@ -2,9 +2,10 @@ const port = 3001;
 
 const axios = require('axios');
 const http = require('http');
+const path = require('path');
 const fs = require('fs');
 const server = http.createServer(function(request, response) {
-    fs.readFile('./index.html', 'utf-8',function (err, data) {//读取内容
+    fs.readFile(path.resolve(__dirname + '/index.html'), 'utf-8',function (err, data) {//读取内容
         if (err) throw err;
         response.writeHead(200, {"Content-Type": "text/html"});//注意这里
         response.write(data);
